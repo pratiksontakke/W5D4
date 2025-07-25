@@ -1,0 +1,21 @@
+# Core LangChain Framework & Abstractions
+langchain
+langchain-core
+langchain-community
+
+# AI Model Integration (OpenAI)
+langchain-openai
+tiktoken
+
+# Universal Document Processing & Parsing
+# The [all-docs] extra installs dependencies for PDF, DOCX, PPTX, etc.
+unstructured[all-docs]
+
+# OCR Engine Wrapper (Required by Unstructured for scanned documents)
+pytesseract
+
+# Vector Database for local storage
+chromadb
+
+# Utilities for managing API keys from a .env file
+python-dotenv

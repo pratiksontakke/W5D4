@@ -1,0 +1,70 @@
+---
+alwaysApply: true
+---
+
+# Notebook LLM - Complete Multimodal Research Assistant
+
+## Objective
+
+Build a production-ready multimodal RAG system that can ingest, process, and reason over complex documents containing text, images, tables, charts, and code snippets — similar to NotebookLM but with enhanced multimodal capabilities.
+
+## Requirements
+
+- **Comprehensive Document Processing**: Handle 10+ file formats including PDF, DOCX, HTML, CSV, Excel, PowerPoint, Jupyter notebooks, and image files  
+- **Advanced Multimodal Understanding**: Process and understand relationships between text, images, tables, charts, and code within documents  
+- **Intelligent Document Structure**: Maintain document hierarchy and relationships between sections  
+- **Advanced Query Capabilities**: Support complex queries requiring reasoning across multiple modalities  
+- **Production Features**: User authentication, document management, query history, and real-time collaboration  
+- **Custom Embedding Strategy**: Implement domain-specific embeddings for technical content  
+- **Export & Integration**: Allow users to export insights and integrate with other tools  
+- **Backend**: FastAPI/NodeJS  
+- **Frontend**: React/Streamlit interface with real-time updates  
+- **Document Processing**: Custom pipeline using Unstructured, Docling, and specialized parsers  
+- **Multimodal AI**: Integration with vision models (GPT-4V, Claude Vision) for image understanding  
+- Implement query decomposition  
+- Vector database with metadata filtering and hybrid search  
+- **Smart Summarization**: Generate executive summaries across multiple documents  
+- **Relationship Mapping**: Identify and visualize connections between concepts across documents  
+
+## Sample Dataset
+
+Research papers with embedded images/charts, technical manuals, financial reports, code documentation, and presentation slides.
+
+## Submission Guidelines
+
+- Submit the GitHub repository link  
+- Well-documented code with a clear README  
+- Technical documentation explaining design decisions  
+# Notebook LLM - Complete Multimodal Research Assistant
+
+## Objective
+
+Build a production-ready multimodal RAG system that can ingest, process, and reason over complex documents containing text, images, tables, charts, and code snippets — similar to NotebookLM but with enhanced multimodal capabilities.
+
+## Requirements
+
+- **Comprehensive Document Processing**: Handle 10+ file formats including PDF, DOCX, HTML, CSV, Excel, PowerPoint, Jupyter notebooks, and image files  
+- **Advanced Multimodal Understanding**: Process and understand relationships between text, images, tables, charts, and code within documents  
+- **Intelligent Document Structure**: Maintain document hierarchy and relationships between sections  
+- **Advanced Query Capabilities**: Support complex queries requiring reasoning across multiple modalities  
+- **Production Features**: User authentication, document management, query history, and real-time collaboration  
+- **Custom Embedding Strategy**: Implement domain-specific embeddings for technical content  
+- **Export & Integration**: Allow users to export insights and integrate with other tools  
+- **Backend**: FastAPI/NodeJS  
+- **Frontend**: React/Streamlit interface with real-time updates  
+- **Document Processing**: Custom pipeline using Unstructured, Docling, and specialized parsers  
+- **Multimodal AI**: Integration with vision models (GPT-4V, Claude Vision) for image understanding  
+- Implement query decomposition  
+- Vector database with metadata filtering and hybrid search  
+- **Smart Summarization**: Generate executive summaries across multiple documents  
+- **Relationship Mapping**: Identify and visualize connections between concepts across documents  
+
+## Sample Dataset
+
+Research papers with embedded images/charts, technical manuals, financial reports, code documentation, and presentation slides.
+
+## Submission Guidelines
+
+- Submit the GitHub repository link  
+- Well-documented code with a clear README  
+- Technical documentation explaining design decisions  
