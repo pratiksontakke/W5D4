@@ -9,7 +9,7 @@ from unstructured.partition.auto import partition
 from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain.storage import FileStore
+from langchain.storage import LocalFileStore
 from langchain.vectorstores import Chroma
 from langchain.retrievers.multi_vector import MultiVectorRetriever
 
@@ -17,9 +17,9 @@ from langchain.retrievers.multi_vector import MultiVectorRetriever
 
 # Define the paths for storing data.
 # This makes it easy to change the storage location in one place.
-DOCSTORE_PATH = Path("./docstore")
-IMAGE_OUTPUT_PATH = Path("./figures")
-VECTORSTORE_PATH = Path("./vectorstore") # ChromaDB will store its data here
+DOCSTORE_PATH = Path("./my_multimodal_rag/docstore")
+IMAGE_OUTPUT_PATH = Path("./my_multimodal_rag/figures")
+VECTORSTORE_PATH = Path("./my_multimodal_rag/vectorstore") # ChromaDB will store its data here
 
 # Ensure the output directories exist.
 IMAGE_OUTPUT_PATH.mkdir(parents=True, exist_ok=True)
@@ -157,7 +157,7 @@ def initialize_and_store(
     print("-> Initializing storage and adding documents...")
 
     # Initialize the storage components
-    docstore = FileStore(str(DOCSTORE_PATH))
+    docstore = LocalFileStore(str(DOCSTORE_PATH))
     vectorstore = Chroma(
         collection_name="multimodal_rag_store",
         embedding_function=OpenAIEmbeddings(),
@@ -175,18 +175,23 @@ def initialize_and_store(
             
         doc_ids = [str(uuid.uuid4()) for _ in summary_list]
         
-        # Create Document objects for the summaries
         summary_docs = [
             Document(page_content=s, metadata={"doc_id": doc_ids[i], "content_type": content_type})
             for i, s in enumerate(summary_list)
         ]
         
-        # Add the summary documents to the vector store
         retriever.vectorstore.add_documents(summary_docs)
         
-        # Add the original content to the document store
-        # For images, we store the path, not the raw content, to save space.
-        retriever.docstore.mset(list(zip(doc_ids, original_list)))
+        # --- FIX APPLIED HERE ---
+        # We must encode strings to bytes before storing them in FileStore.
+        # We assume 'text' and 'table' content are strings that need encoding.
+        # We assume 'image' content is a path (string), which also needs encoding to be stored.
+        encoded_original_list = [
+            item.encode('utf-8') if isinstance(item, str) else item 
+            for item in original_list
+        ]
+        
+        retriever.docstore.mset(list(zip(doc_ids, encoded_original_list)))
         print(f"   - Added {len(summary_list)} {content_type} documents to storage.")
 
     # Add each type of content to the retriever
@@ -235,7 +240,7 @@ if __name__ == "__main__":
     
     # Example usage:
     # Make sure you have a file named 'test_document.pdf' in the 'source_documents' folder.
-    test_file = "./source_documents/test_document.pdf"
+    test_file = "./my_multimodal_rag/source_documents/test_document.pdf"
     
     if os.path.exists(test_file):
         print("--- Starting standalone ingestion test ---")
